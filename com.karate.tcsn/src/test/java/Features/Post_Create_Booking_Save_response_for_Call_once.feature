@@ -1,3 +1,4 @@
+# Validation of response and saving response and printing response
 Feature: Creates a new booking in the API
 
   Background: 
@@ -7,33 +8,25 @@ Feature: Creates a new booking in the API
     * def time = getDate()
     * def randomString = 'user' + time + '_Test'
 
-  # data driven through scenario outline and example table
-  @tag1
+  # Get the response and print
+  @tag2
   Scenario Outline: Creates a new booking in the API
     Given url 'https://restful-booker.herokuapp.com/booking'
     And headers request_headers
     * set req.firstname = '<name>'
-    # Can appned addition attribute in the json using set keyword and set string as well
-    # * set req.middlename = '<middlename>'
     And request req
     * print req
     When method POST
     Then status 200
     * print response
+    And match response.bookingid == '#present'
+    And match response.bookingid != null
+    And match response.booking.firstname == "kuntal"
+    And def firstname = response.booking.firstname
+    And def bookingid = response.bookingid
+    * print firstname
+    * print bookingid
 
     Examples: 
       | name   |
       | kuntal |
-      | jain   |
-
-  # data driven through using setting random string function
-  @tag1
-  Scenario: Creates a new booking in the API
-    Given url 'https://restful-booker.herokuapp.com/booking'
-    And headers request_headers
-    * set req.firstname = randomString
-    And request req
-    * print req
-    When method POST
-    Then status 200
-    * print response

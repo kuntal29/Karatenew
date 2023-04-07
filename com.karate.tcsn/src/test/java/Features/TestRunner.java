@@ -9,7 +9,7 @@ import com.intuit.karate.Runner;
 import com.intuit.karate.junit4.Karate;
 
 @RunWith(Karate.class)
-@KarateOptions(features = { "classpath:features" }, tags = { "@tag1" })
+@KarateOptions(features = {"classpath:Features"}, tags = { "@tag99" })
 public class TestRunner {
 
 }
