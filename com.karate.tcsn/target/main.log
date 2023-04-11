@@ -1,25 +1,32 @@
-15:25:57.758 the value of env is :   
-15:25:57.959 [print] {
-  "first": "Jim",
-  "lastname": "Brown",
-  "totalprice": 111,
-  "depositpaid": true,
-  "bookingdates": {
-    "checkin": "2018-01-01",
-    "checkout": "2019-01-01"
-  },
-  "additionalneeds": "Breakfast"
+17:25:01.990 the value of env is :   
+16:12:09.542 [print] {
+  "Connection": "keep-alive",
+  "Content-Type": "application/json",
+  "Accept": "application/json"
 }
 
-15:25:58.898 request:
-1 > POST https://restful-booker.herokuapp.com/booking
-1 > Accept: application/json
-1 > Accept-Encoding: gzip,deflate
-1 > Connection: keep-alive
-1 > Content-Length: 164
-1 > Content-Type: application/json; charset=UTF-8
-1 > Host: restful-booker.herokuapp.com
-1 > User-Agent: Apache-HttpClient/4.5.11 (Java/1.8.0_131)
+16:12:09.544 [print] 7.0
+16:12:09.544 [print] Num2 is greater
+
+
+	var env = karate.env
+	karate.log('the value of env is : ', env);
+
+	if (env == 'qa') {
+		config.baseUrl = 'https://dummyapi.io/data/v1'
+	}
+	else {
+		config.baseUrl = 'https://dummyapi.io/data/v1'
+	}
+
+
+	karate.configure('connectTimeout', 5000);
+	karate.configure('readTimeout', 5000)
+
+
+	return config;
+}
+ User-Agent: Apache-HttpClient/4.5.11 (Java/1.8.0_131)
 {"first":"Jim","lastname":"Brown","totalprice":111,"depositpaid":true,"bookingdates":{"checkin":"2018-01-01","checkout":"2019-01-01"},"additionalneeds":"Breakfast"}
 
 15:26:11.314 response time in milliseconds: 12414.51
